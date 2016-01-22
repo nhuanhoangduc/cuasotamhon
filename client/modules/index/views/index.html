@@ -1,23 +1,29 @@
 <div class="panel panel-default">
 	<div class="panel-body posts">
 		
+		<!-- loading data -->
+		<div>
+			<span ng-if="isLoading">
+				<i class="fa fa-spinner fa-pulse"></i> Đang tải dữ liệu .... 
+			</span>
+		</div>
 		<div class="row">
 			<div class="col-md-6" ng-repeat="post in service.posts">
 				
 				<div class="post-item">
 					<div class="post-title">
-						<a href="pages-blog-post.html">{{post.title}}</a>
+						<a ui-sref="postState({postId:post._id})">{{post.title}}</a>
 					</div>
 					<div class="post-date"><span class="fa fa-calendar"></span>{{post.date.toString()}}</div>
 					<div class="post-text">
-						<img src="/modules/admin/assets/images/blog/post_1.jpg" class="img-responsive img-text"/>
-						<p>Outer space, or simply space, is the void that exists between celestial bodies, including the Earth. It is not completely empty, but consists of a hard vacuum containing a low density of particles: predominantly a plasma of hydrogen and helium.</p>
+						<img ng-src="{{post.imageUrl}}" class="img-responsive img-text"/>
+						<p>{{post.shortContent}}</p>
 					</div>
 					<div class="post-row">
 						<div class="post-info">
 							<span class="fa fa-thumbs-up"></span> 15 - <span class="fa fa-eye"></span> 15,332 - <span class="fa fa-star"></span> 322
 						</div>
-						<button class="btn btn-default btn-rounded pull-right">Read more &RightArrow;</button>
+						<button ui-sref="postState({postId:post._id})" class="btn btn-default btn-rounded pull-right">Đọc tiếp &RightArrow;</button>
 					</div>
 					</div> <!-- end post  -->
 					

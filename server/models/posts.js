@@ -19,6 +19,14 @@ var postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'categories',
     required: true
+  },
+  shortContent: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
   }
 });
 

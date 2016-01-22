@@ -10,7 +10,7 @@ router.get('/', userService.checkLogin, postService.getAll);
 router.post('/count', postService.count);
 
 /* get post by id */
-router.get('/id/:id', userService.checkLogin, postService.getById);
+router.get('/id/:id', postService.getById);
 
 /* get post by page */
 router.post('/getbypage', postService.getByPage);
