@@ -4,6 +4,6 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/cuasotamhonDB');
 
 /* connect database hosting */
-// mongoose.connect('mongodb://nhuanhoangduc:vansay@ds037145.mongolab.com:37145/nhuandb');
+// mongoose.connect('mongodb://nhuan:12345@ds047355.mongolab.com:47355/cuasotamhondb');
 
 module.exports = mongoose;
