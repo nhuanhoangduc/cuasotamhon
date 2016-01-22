@@ -6,8 +6,14 @@ var postService = require('../services/posts.service');
 /* get all posts */
 router.get('/', userService.checkLogin, postService.getAll);
 
+/* get all posts */
+router.post('/count', postService.count);
+
 /* get post by id */
 router.get('/id/:id', userService.checkLogin, postService.getById);
+
+/* get post by page */
+router.post('/getbypage', postService.getByPage);
 
 /* get post by category */
 router.get('/category/:categoryId/:from/:to', userService.checkLogin, postService.getByCategory);

@@ -6,10 +6,10 @@ var userService = require('../services/users.service');
 router.get('/', userService.checkAdmin, userService.getAll);
 
 /* get user by id. */
-router.get('/:id', userService.checkAdmin, userService.getById);
+router.get('/:id', userService.checkLogin, userService.getById);
 
 /* add new user */
-router.post('/', userService.checkAdmin, userService.add);
+router.post('/', userService.add);
 
 /* remove user */
 router.delete('/:id', userService.checkAdmin, userService.remove);

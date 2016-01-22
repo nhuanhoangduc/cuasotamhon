@@ -1,13 +1,261 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Index</title>
-</head>
-
-<body>
-
+<html lang="en" ng-app="nhuanApp">
+  <head>
+    <!-- META SECTION -->
+    <title>Joli Admin - Responsive Bootstrap Admin Template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="icon" href="/modules/admin/favicon.ico" type="image/x-icon" />
+    <!-- END META SECTION -->
+    
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="/modules/admin/css/theme-black.css"/>
+    <!-- EOF CSS INCLUDE -->
+    <!-- angular / angular ui route -->
+    <script type="text/javascript" src="/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/angular-ui-router/release/angular-ui-router.min.js"></script>
+    
+    <!-- index.js -->
+    <script type="text/javascript" src="/js/index.js"></script>
+    <!-- load all controllers and services files -->
+    <% for(var i=0; i<files.length; i++) {%>
+    <script type="text/javascript" src="<%=files[i]%>"></script>
+    <% } %>
+  </head>
+  <body>
+    <!-- START PAGE CONTAINER -->
+    <div class="page-container">
+      <!-- PAGE CONTENT -->
+      <div class="page-content">
+        
+        <!-- START X-NAVIGATION VERTICAL -->
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+          <!-- TOGGLE NAVIGATION -->
+          <li class="xn-icon-button">
+            <a href="/#/index?pageNumber=1" ><span class="fa fa-home fa-5x"></span></a>
+          </li>
+          <!-- END TOGGLE NAVIGATION -->
+          <!-- SEARCH -->
+          <li class="xn-search">
+            <form role="form">
+              <input type="text" name="search" placeholder="Search..."/>
+            </form>
+          </li>
+          <!-- END SEARCH -->
+          <!-- SIGN OUT -->
+          <li class="xn-icon-button pull-right">
+            <a href="/modules/admin/#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+          </li>
+          <!-- END SIGN OUT -->
+          <!-- MESSAGES -->
+          <li class="xn-icon-button pull-right">
+            <a href="/modules/admin/#"><span class="fa fa-comments"></span></a>
+            <div class="informer informer-danger">4</div>
+            <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+              <div class="panel-heading">
+                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
+                <div class="pull-right">
+                  <span class="label label-danger">4 new</span>
+                </div>
+              </div>
+              <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
+                <a href="/modules/admin/#" class="list-group-item">
+                  <div class="list-group-status status-online"></div>
+                  <img src="/modules/admin/assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
+                  <span class="contacts-title">John Doe</span>
+                  <p>Praesent placerat tellus id augue condimentum</p>
+                </a>
+                <a href="/modules/admin/#" class="list-group-item">
+                  <div class="list-group-status status-away"></div>
+                  <img src="/modules/admin/assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
+                  <span class="contacts-title">Dmitry Ivaniuk</span>
+                  <p>Donec risus sapien, sagittis et magna quis</p>
+                </a>
+                <a href="/modules/admin/#" class="list-group-item">
+                  <div class="list-group-status status-away"></div>
+                  <img src="/modules/admin/assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
+                  <span class="contacts-title">Nadia Ali</span>
+                  <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
+                </a>
+                <a href="/modules/admin/#" class="list-group-item">
+                  <div class="list-group-status status-offline"></div>
+                  <img src="/modules/admin/assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
+                  <span class="contacts-title">Darth Vader</span>
+                  <p>I want my money back!</p>
+                </a>
+              </div>
+              <div class="panel-footer text-center">
+                <a href="/modules/admin/pages-messages.html">Show all messages</a>
+              </div>
+            </div>
+          </li>
+          <!-- END MESSAGES -->
+          <!-- TASKS -->
+          <li class="xn-icon-button pull-right">
+            <a href="/modules/admin/#"><span class="fa fa-tasks"></span></a>
+            <div class="informer informer-warning">3</div>
+            <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+              <div class="panel-heading">
+                <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>
+                <div class="pull-right">
+                  <span class="label label-warning">3 active</span>
+                </div>
+              </div>
+              <div class="panel-body list-group scroll" style="height: 200px;">
+                <a class="list-group-item" href="/modules/admin/#">
+                  <strong>Phasellus augue arcu, elementum</strong>
+                  <div class="progress progress-small progress-striped active">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
+                  </div>
+                  <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
+                </a>
+                <a class="list-group-item" href="/modules/admin/#">
+                  <strong>Aenean ac cursus</strong>
+                  <div class="progress progress-small progress-striped active">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
+                  </div>
+                  <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
+                </a>
+                <a class="list-group-item" href="/modules/admin/#">
+                  <strong>Lorem ipsum dolor</strong>
+                  <div class="progress progress-small progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%</div>
+                  </div>
+                  <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
+                </a>
+                <a class="list-group-item" href="/modules/admin/#">
+                  <strong>Cras suscipit ac quam at tincidunt.</strong>
+                  <div class="progress progress-small">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
+                  </div>
+                  <small class="text-muted">John Doe, 21 Sep 2014 /</small><small class="text-success"> Done</small>
+                </a>
+              </div>
+              <div class="panel-footer text-center">
+                <a href="/modules/admin/pages-tasks.html">Show all tasks</a>
+              </div>
+            </div>
+          </li>
+          <!-- END TASKS -->
+        </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+        
+        
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+          <h2><span class="fa fa-bullhorn"></span> Bài viết </h2>
+        </div>
+        <!-- END PAGE TITLE -->
+        
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+          
+          <div class="row">
+            <!-- content -->
+            <div class="col-md-9">
+              <div ui-view></div>
+            </div>
+            
+            <div class="col-md-3">
+              
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h3>Loại tin</h3>
+                  <div class="links">
+                    <% for(var i=0; i<categories.length; i++) {%>
+                    <a href="/#/index?pageNumber=1&categoryId=<%=categories[i]._id%>">
+                      <%=categories[i].name %>
+                      <span class="label label-default"><%=categories[i].count %></span>
+                    </a>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h3>Recent</h3>
+                  <div class="links small">
+                    <a href="/modules/admin/#">Vestibulum porttitor neque vitae odio vulputate molestie</a>
+                    <a href="/modules/admin/#">Etiam tellus mi, interdum id nulla in</a>
+                    <a href="/modules/admin/#">Cras eu tincidunt quam</a>
+                    <a href="/modules/admin/#">Donec rhoncus quam tortor, id pulvinar erat elementum eu</a>
+                    <a href="/modules/admin/#">Nunc lorem est, suscipit bibendum</a>
+                    <a href="/modules/admin/#">Fusce sollicitudin quis turpis eget mollis</a>
+                    <a href="/modules/admin/#">Cras eget sagittis dui, et mollis tortor</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h3>Tags</h3>
+                  <ul class="list-tags push-up-10">
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Donec</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Bibendum</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Praesent</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Fusce</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Nam quis</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Maecenas</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Nulla facilisi</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Donec</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Nam vitae</a></li>
+                    <li><a href="/modules/admin/#"><span class="fa fa-tag"></span> Malesuada</a></li>
+                  </ul>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+        <!-- END PAGE CONTENT WRAPPER -->
+        
+      </div>
+      <!-- END PAGE CONTENT -->
+    </div>
+    <!-- END PAGE CONTAINER -->
+    
+    <!-- MESSAGE BOX-->
+    <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+      <div class="mb-container">
+        <div class="mb-middle">
+          <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+          <div class="mb-content">
+            <p>Are you sure you want to log out?</p>
+            <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+          </div>
+          <div class="mb-footer">
+            <div class="pull-right">
+              <a href="/modules/admin/pages-login.html" class="btn btn-success btn-lg">Yes</a>
+              <button class="btn btn-default btn-lg mb-control-close">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END MESSAGE BOX-->
+    <!-- START PRELOADS -->
+  <audio id="audio-alert" src="/modules/admin/audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="/modules/admin/audio/fail.mp3" preload="auto"></audio>
+<!-- END PRELOADS -->
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="/modules/admin/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/modules/admin/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/modules/admin/js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
+<!-- START THIS PAGE PLUGINS-->
+<script type='text/javascript' src='/modules/admin/js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="/modules/admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<!-- END THIS PAGE PLUGINS-->
+<!-- START TEMPLATE -->
+<script type="text/javascript" src="/modules/admin/js/settings.js"></script>
+<script type="text/javascript" src="/modules/admin/js/plugins.js"></script>
+<script type="text/javascript" src="/modules/admin/js/actions.js"></script>
+<!-- END TEMPLATE -->
+<!-- END SCRIPTS -->
 </body>
-
 </html>

@@ -27,7 +27,12 @@ var userSchema = new Schema({
   kids: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'kids'
-  }]
+  }],
+  activateCode: String,
+  isActivated: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model('users', userSchema);

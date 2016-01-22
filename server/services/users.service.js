@@ -4,6 +4,8 @@
 
 /* init variables */
 var User = require('../models/users');
+var randomString = require('random-string');
+var modemService = require('./modem.service');
 
 
 /*
@@ -34,10 +36,26 @@ var getById = function(req, res, next) {
 
 /* add new user */
 var add = function(req, res, next) {
-  User.create(req.body, function(err, user) {
+  var code = randomString({
+    length: 8,
+    numeric: true,
+    letters: true,
+    special: false
+  });
+  var newUser = req.body;
+  newUser.activateCode = code;
+
+  User.create(newUser, function(err, user) {
     if (err)
       return next(err);
 
+    modemService.sendMessage('Mã kích hoạt của bạn là ' + code, user.phone, function(err) {
+      if (err)
+        console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' bị lỗi!');
+
+      console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' thành công!');
+    });
+    
     res.send(user);
   });
 };

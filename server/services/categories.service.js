@@ -5,6 +5,8 @@
 
 /* init variables */
 var Category = require('../models/categories');
+var Post = require('../models/posts');
+var async = require('async');
 
 
 /*
@@ -55,11 +57,39 @@ var edit = function(req, res, next) {
   });
 };
 
+/* count post */
+var count = function(callback) {
+  var arr = [];
+
+  Category.find({}, function(err, results) {
+    if (err)
+      return next(err);
+
+    async.each(results, function(category, nextItem) {
+      Post.count({
+        category: category._id
+      }, function(err, count) {
+        arr.push({
+          _id: category._id,
+          name: category.name,
+          count: count
+        });
+
+        nextItem();
+      });
+    }, function done() {
+      callback(arr);
+    });
+
+  });
+}
+
 
 /* exports services */
 module.exports = {
   getAll: getAll,
   add: add,
   remove: remove,
-  edit: edit
+  edit: edit,
+  count: count
 };

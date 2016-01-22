@@ -86,4 +86,4 @@ function onListening() {
 }
 
 /* config modem */
-// require('./modem');
+require('./configs/modem');

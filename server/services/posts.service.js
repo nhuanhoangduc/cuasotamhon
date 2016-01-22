@@ -21,6 +21,31 @@ var getAll = function(req, res, next) {
   });
 };
 
+/* counting */
+var count = function(req, res, next) {
+  if (req.body.categoryId) {
+    Post.count({
+      category: req.params.categoryId
+    }, function(err, count) {
+      if (err)
+        return next(err);
+
+      res.send({
+        count: count
+      });
+    });
+  } else {
+    Post.count({}, function(err, count) {
+      if (err)
+        return next(err);
+
+      res.send({
+        count: count
+      });
+    });
+  }
+};
+
 /* get post by id */
 var getById = function(req, res, next) {
   Post.findOne({
@@ -36,8 +61,8 @@ var getById = function(req, res, next) {
 /* get post by category */
 var getByCategory = function(req, res, next) {
   Post.find({
-      category: req.params.categoryId
-    })
+    category: req.params.categoryId
+  })
     .sort({
       date: -1
     })
@@ -47,6 +72,45 @@ var getByCategory = function(req, res, next) {
 
       res.send(results);
     });
+};
+
+/* get post by page */
+var getByPage = function(req, res, next) {
+  var pageNumber = req.body.pageNumber;
+  var pageCount = req.body.count;
+  var categoryId = req.body.categoryId;
+
+  if (categoryId) {
+    Post
+      .find({
+        category: categoryId
+      })
+      .sort({
+        date: -1
+      })
+      .skip((pageNumber - 1) * pageCount)
+      .limit(pageCount)
+      .exec(function(err, posts) {
+        if (err)
+          return next(err);
+
+        res.send(posts);
+      });
+  } else {
+    Post
+      .find({})
+      .sort({
+        date: -1
+      })
+      .skip((pageNumber - 1) * pageCount)
+      .limit(pageCount)
+      .exec(function(err, posts) {
+        if (err)
+          return next(err);
+
+        res.send(posts);
+      });
+  }
 };
 
 /* add new */
@@ -87,8 +151,10 @@ var edit = function(req, res, next) {
 /* exports services */
 module.exports = {
   getAll: getAll,
+  count: count,
   getById: getById,
   getByCategory: getByCategory,
+  getByPage: getByPage,
   add: add,
   remove: remove,
   edit: edit

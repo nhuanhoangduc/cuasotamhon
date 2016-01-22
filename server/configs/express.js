@@ -23,6 +23,7 @@ app.use(session({
   secret: 'cua so tam hon'
 }));
 app.use(express.static(path.join(__dirname, '../../client')));
+app.use(express.static(path.join(__dirname, '../../bower_components')));
 
 // config routes
 require('./routes')(app);
