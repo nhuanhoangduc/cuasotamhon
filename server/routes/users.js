@@ -18,7 +18,7 @@ router.post('/', userService.add);
 router.delete('/:id', userService.checkAdmin, userService.remove);
 
 /* edit user */
-router.put('/', userService.checkAdmin, userService.edit);
+router.put('/', userService.checkLogin, userService.edit);
 
 /* login */
 router.post('/login', userService.login);

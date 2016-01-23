@@ -1,4 +1,4 @@
-app.factory('headerService', function($http, toastr) {
+app.factory('profileService', function($http, toastr) {
   var updateUser = function(user, data) {
     /* remove old data*/
     for (var key in user) {
@@ -17,7 +17,6 @@ app.factory('headerService', function($http, toastr) {
     getCurrentUser: function(callback) {
       $http.get('/users').then(function success(response) {
         updateUser(service.user, response.data);
-        console.log(service.user);
         callback;
       }, function error() {
         toastr.error('Không cập nhật được nội dung, vui lòng xem lại đường truyền', 'Lỗi đường truyền', {
@@ -55,8 +54,20 @@ app.factory('headerService', function($http, toastr) {
           closeButton: true
         });
       });
-    }
+    },
 
+    editUser: function(user) {
+      $http.put('/users', user).then(function success(response) {
+        service.getCurrentUser();
+        toastr.success('Cập nhật thành công', 'Thông báo', {
+          closeButton: true
+        });
+      }, function error() {
+        toastr.error('Vui lòng kiểm tra lại đường truyền', 'Lỗi xảy ra', {
+          closeButton: true
+        });
+      });
+    }
   };
 
   service.getCurrentUser();

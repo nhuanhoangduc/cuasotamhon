@@ -29,6 +29,7 @@ var getCurrentUser = function(req, res, next) {
 
   if (sess.user) {
     res.send({
+      _id: user._id,
       username: user.username,
       fullName: user.fullName,
       phone: user.phone,
@@ -98,13 +99,26 @@ var remove = function(req, res, next) {
 
 /* edit user */
 var edit = function(req, res, next) {
+  var user = req.body;
+
   User.update({
-    _id: req.body._id
-  }, req.body, function(err) {
+    _id: user._id
+  }, user, function(err) {
     if (err)
       return next(err);
 
-    res.send(200);
+    var sess = req.session;
+
+    User.findOne({
+      _id: user._id
+    }, function(err, user) {
+      if (err || user === null)
+        return next(err);
+
+      sess.user = user;
+      res.send(200);
+    });
+
   });
 };
 

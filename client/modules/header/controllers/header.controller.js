@@ -1,5 +1,5 @@
-app.controller('headerCtrl', function($scope, headerService) {
-  $scope.service = headerService;
+app.controller('headerCtrl', function($scope, profileService) {
+  $scope.service = profileService;
 
   $scope.login = function(username, password) {
     $scope.service.login(username, password);
@@ -13,5 +13,9 @@ app.controller('headerCtrl', function($scope, headerService) {
     } else {
       confirm('Chưa đăng nhập !')
     }
+  };
+
+  $scope.search = function(str) {
+    console.log(str);
   };
 });

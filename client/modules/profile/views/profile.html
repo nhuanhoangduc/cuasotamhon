@@ -1,0 +1,84 @@
+<div ng-if="service.user.isLogin">
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Username</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				{{service.user.username}}
+			</div>
+			<span class="help-block">Tên đăng nhập</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Password</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="password" class="form-control" ng-model="newPassword"/>
+			</div>
+			<span class="help-block">Nhập mật khẩu mới</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Re-Password</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="password" class="form-control" ng-model="rePassword"/>
+			</div>
+			<span class="help-block">Nhập lại mật khẩu</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">** Full name</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="text" class="form-control" ng-model="service.user.fullName"/>
+			</div>
+			<span class="help-block">Nhập tên người dùng</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">** Phone</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="text" class="form-control" ng-model="service.user.phone"/>
+			</div>
+			<span class="help-block">Nhập số điện thoại</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Job</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="text" class="form-control" ng-model="service.user.job"/>
+			</div>
+			<span class="help-block">Nhập tên công việc</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Địa chỉ</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="text" class="form-control" ng-model="service.user.address"/>
+			</div>
+			<span class="help-block">Nhập địa chỉ nơi ở</span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Image Url</label>
+		<div class="col-md-6 col-xs-12">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+				<input type="text" class="form-control" ng-model="service.user.imgUrl"/>
+			</div>
+			<span class="help-block">Đường dẫn ảnh đại diện</span>
+		</div>
+	</div>
+	<div class="row">
+		<button class="col-md-offset-8 col-md-2 btn btn-info" ng-click="save(newPassword, rePassword)">Save</button>
+	</div>
+</div>

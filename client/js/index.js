@@ -15,5 +15,10 @@ var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bo
         url: '/post/:postId',
         templateUrl: 'modules/post/views/post.html',
         controller: 'postCtrl'
+      })
+      .state('profile', {
+        url: '/profile',
+        templateUrl: '../modules/profile/views/profile.html',
+        controller: 'profileCtrl'
       });
   });

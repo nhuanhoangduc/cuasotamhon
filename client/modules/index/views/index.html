@@ -4,7 +4,12 @@
 		<!-- loading data -->
 		<div>
 			<span ng-if="isLoading">
-				<i class="fa fa-spinner fa-pulse"></i> Đang tải dữ liệu .... 
+				<i class="fa fa-spinner fa-spin"></i> Đang tải dữ liệu ....
+			</span>
+		</div>
+		<div>
+			<span ng-if="service.posts.length <= 0">
+				<i class="fa fa-warning"></i> Không có bài viết trong mục này
 			</span>
 		</div>
 		<div class="row">

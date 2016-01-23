@@ -126,9 +126,9 @@
                   </div>
                   <!-- profile -->
                   <div ng-if="service.user.isLogin">
-                    <a href="/edit/#/profile" class="list-group-item">
+                    <a href="#" class="list-group-item">
                       <div class="list-group-status status-online"></div>
-                      <img ng-src="{{service.user.imgUrl}}" class="pull-left" alt="John Doe"/>
+                      <img src="http://data.whicdn.com/images/50955554/large.jpg" class="pull-left" alt="John Doe"/>
                       <span class="contacts-title">{{service.user.fullName}}</span>
                       <p>Điện thoại - {{service.user.phone}}</p>
                     </a>
@@ -163,7 +163,7 @@
         
         <!-- PAGE TITLE -->
         <div class="page-title">
-          <h2><span class="fa fa-bullhorn"></span> Bài viết </h2>
+          <h2><span class="glyphicon glyphicon-cog"></span> Quản lý tài khoản </h2>
         </div>
         <!-- END PAGE TITLE -->
         
@@ -172,41 +172,71 @@
           
           <div class="row">
             <!-- content -->
-            <div class="col-md-9">
-              <div ui-view></div>
-            </div>
-            
-            <div class="col-md-3">
-              
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <h3>Loại tin</h3>
-                  <div class="links">
-                    <% for(var i=0; i<categories.length; i++) {%>
-                    <a href="/#/index?pageNumber=1&categoryId=<%=categories[i]._id%>">
-                      <%=categories[i].name %>
-                      <span class="label label-default"><%=categories[i].count %></span>
-                    </a>
-                    <% } %>
+            <div class="row">
+              <div ui-view class="col-md-9"></div>
+              <div class="col-md-3" ng-controller="naviCtrl">
+                <div class="panel panel-default" ng-if="service.user.isLogin">
+                  <div class="panel-body profile" style="background: url('assets/images/gallery/music-4.jpg') center center no-repeat;">
+                    <div class="profile-image">
+                      <img ng-src="{{service.user.imgUrl}}" alt="Nadia Ali"/>
+                    </div>
+                    <div class="profile-data">
+                      <div class="profile-data-name" style="color: black;">{{service.user.fullName}}</div>
+                      <div class="profile-data-title" style="color: black;">{{service.user.phone}}</div>
+                    </div>
+                  </div>
+                  <div class="panel-body list-group border-bottom">
+                    <a href="#" class="list-group-item active"><span class="fa fa-user"></span> Thông tin người dùng</a>
+                    <a href="#" class="list-group-item"><span class="fa fa-users"></span> Quản lý trẻ em </a>
+                    <a href="#" class="list-group-item"><span class="fa fa-folder"></span> Thông báo </a>
+                    <a href="#" class="list-group-item"><span class="fa fa-cog"></span> Settings</a>
+                  </div>
+                  <div class="panel-body">
+                    <h4 class="text-title">Chuyên gia tư vấn sức khỏe</h4>
+                    <div class="row">
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user.jpg"/>
+                          <span>Dmitry Ivaniuk</span>
+                        </a>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user2.jpg"/>
+                          <span>John Doe</span>
+                        </a>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user4.jpg"/>
+                          <span>Brad Pit</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user5.jpg"/>
+                          <span>John Travolta</span>
+                        </a>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user6.jpg"/>
+                          <span>Darth Vader</span>
+                        </a>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <a href="#" class="friend">
+                          <img src="../modules/admin/assets/images/users/user7.jpg"/>
+                          <span>Samuel Leroy Jackson</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <h3>Recent</h3>
-                  <div class="links small">
-                    <a href="/modules/admin/#">Vestibulum porttitor neque vitae odio vulputate molestie</a>
-                    <a href="/modules/admin/#">Etiam tellus mi, interdum id nulla in</a>
-                    <a href="/modules/admin/#">Cras eu tincidunt quam</a>
-                    <a href="/modules/admin/#">Donec rhoncus quam tortor, id pulvinar erat elementum eu</a>
-                    <a href="/modules/admin/#">Nunc lorem est, suscipit bibendum</a>
-                    <a href="/modules/admin/#">Fusce sollicitudin quis turpis eget mollis</a>
-                    <a href="/modules/admin/#">Cras eget sagittis dui, et mollis tortor</a>
-                  </div>
-                </div>
-              </div>
-              
+              <!-- end content -->
             </div>
           </div>
           

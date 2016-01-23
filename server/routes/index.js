@@ -7,11 +7,19 @@ var resources = require('../configs/resources');
 router.get('/', function(req, res, next) {
   categoryService.count(function(categories) {
     resources.getJsFiles(function(files) {
-      console.log(files);
       res.render('index', {
         categories: categories,
         files: files
       });
+    });
+  });
+});
+
+/* GET profile page. */
+router.get('/edit', function(req, res, next) {
+  resources.getJsFiles(function(files) {
+    res.render('profile', {
+      files: files
     });
   });
 });

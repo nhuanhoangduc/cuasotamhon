@@ -35,7 +35,7 @@ var userSchema = new Schema({
   },
   imgUrl: {
     type: String,
-    default: 'nhuan'
+    default: 'http://41.media.tumblr.com/18a5ac1fc70360ea1b2ef476ec9f15f2/tumblr_mgblfiaRi21qarlxmo1_400.png'
   },
   fullName: {
     type: String,
@@ -46,6 +46,11 @@ var userSchema = new Schema({
     type: String,
     required: true,
     default: 'Nghề nghiệp'
+  },
+  address: {
+    type: String,
+    required: true,
+    default: 'Địa chỉ'
   }
 });
 
