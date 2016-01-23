@@ -1,4 +1,4 @@
-var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr'])
+var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bootstrap'])
   .config(function($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1

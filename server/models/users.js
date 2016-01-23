@@ -32,6 +32,20 @@ var userSchema = new Schema({
   isActivated: {
     type: Boolean,
     default: false
+  },
+  imgUrl: {
+    type: String,
+    default: 'nhuan'
+  },
+  fullName: {
+    type: String,
+    required: true,
+    default: 'Tên người dùng'
+  },
+  job: {
+    type: String,
+    required: true,
+    default: 'Nghề nghiệp'
   }
 });
 

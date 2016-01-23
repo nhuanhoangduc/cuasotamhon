@@ -2,11 +2,14 @@ var express = require('express');
 var router = express.Router();
 var userService = require('../services/users.service');
 
+/* get current user. */
+router.get('/', userService.getCurrentUser);
+
 /* get all users. */
-router.get('/', userService.checkAdmin, userService.getAll);
+router.get('/getall', userService.checkAdmin, userService.getAll);
 
 /* get user by id. */
-router.get('/:id', userService.checkLogin, userService.getById);
+router.get('/getbyid/:id', userService.checkLogin, userService.getById);
 
 /* add new user */
 router.post('/', userService.add);

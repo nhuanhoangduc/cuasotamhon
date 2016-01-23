@@ -22,6 +22,30 @@ var getAll = function(req, res, next) {
   });
 };
 
+/* get current user */
+var getCurrentUser = function(req, res, next) {
+  var sess = req.session;
+  var user = sess.user;
+
+  if (sess.user) {
+    res.send({
+      username: user.username,
+      fullName: user.fullName,
+      phone: user.phone,
+      isPaid: user.isPaid,
+      kids: user.kids,
+      isActivated: user.isActivated,
+      imgUrl: user.imgUrl,
+      job: user.job,
+      isLogin: true
+    });
+  } else {
+    res.send({
+      isLogin: false
+    });
+  }
+};
+
 /* get user by id */
 var getById = function(req, res, next) {
   User.findOne({
@@ -55,7 +79,7 @@ var add = function(req, res, next) {
 
       console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' thành công!');
     });
-    
+
     res.send(user);
   });
 };
@@ -134,6 +158,7 @@ var checkAdmin = function(req, res, next) {
 /* export all methods */
 module.exports = {
   getAll: getAll,
+  getCurrentUser: getCurrentUser,
   getById: getById,
   add: add,
   remove: remove,
