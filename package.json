@@ -15,7 +15,6 @@
     "ejs": "^2.3.4",
     "express": "~4.13.1",
     "express-session": "^1.13.0",
-    "modem": "^1.0.3",
     "mongoose": "^4.3.6",
     "morgan": "~1.6.1",
     "random-string": "^0.1.2",
