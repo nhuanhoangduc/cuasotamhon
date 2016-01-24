@@ -13,6 +13,8 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="/modules/admin/css/theme-default.css"/>
     <!-- EOF CSS INCLUDE -->
+    <!-- jquery -->
+    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
     <!-- angular / angular ui route -->
     <script type="text/javascript" src="/angular/angular.min.js"></script>
     <script type="text/javascript" src="/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -23,7 +25,54 @@
     <!--  angular ui bootstrap -->
     <script src="/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    
+    <!-- momentjs -->
+    <script src="/moment/moment.js"></script>
+    <script src="/angular-moment/angular-moment.min.js"></script>
+    <!-- Include Froala Editor styles -->
+    <link rel="stylesheet" href="/editor/css/froala_editor.min.css" />
+    <link rel="stylesheet" href="/editor/css/froala_style.min.css" />
+    <!-- Include Froala Editor Plugins styles -->
+    <link rel="stylesheet" href="/editor/css/plugins/char_counter.css">
+    <link rel="stylesheet" href="/editor/css/plugins/code_view.css">
+    <link rel="stylesheet" href="/editor/css/plugins/colors.css">
+    <link rel="stylesheet" href="/editor/css/plugins/emoticons.css">
+    <link rel="stylesheet" href="/editor/css/plugins/file.css">
+    <link rel="stylesheet" href="/editor/css/plugins/fullscreen.css">
+    <link rel="stylesheet" href="/editor/css/plugins/image_manager.css">
+    <link rel="stylesheet" href="/editor/css/plugins/image.css">
+    <link rel="stylesheet" href="/editor/css/plugins/line_breaker.css">
+    <link rel="stylesheet" href="/editor/css/plugins/table.css">
+    <link rel="stylesheet" href="/editor/css/plugins/video.css">
+    <!-- Include Froala Editor -->
+    <script src="/editor/js/froala_editor.min.js"></script>
+    <!-- Include Froala Editor Plugins -->
+    <script src="/editor/js/plugins/align.min.js"></script>
+    <script src="/editor/js/plugins/char_counter.min.js"></script>
+    <script src="/editor/js/plugins/code_beautifier.min.js"></script>
+    <script src="/editor/js/plugins/code_view.min.js"></script>
+    <script src="/editor/js/plugins/colors.min.js"></script>
+    <script src="/editor/js/plugins/emoticons.min.js"></script>
+    <script src="/editor/js/plugins/entities.min.js"></script>
+    <script src="/editor/js/plugins/file.min.js"></script>
+    <script src="/editor/js/plugins/font_family.min.js"></script>
+    <script src="/editor/js/plugins/font_size.min.js"></script>
+    <script src="/editor/js/plugins/fullscreen.min.js"></script>
+    <script src="/editor/js/plugins/image.min.js"></script>
+    <script src="/editor/js/plugins/image_manager.min.js"></script>
+    <script src="/editor/js/plugins/inline_style.min.js"></script>
+    <script src="/editor/js/plugins/line_breaker.min.js"></script>
+    <script src="/editor/js/plugins/link.min.js"></script>
+    <script src="/editor/js/plugins/lists.min.js"></script>
+    <script src="/editor/js/plugins/paragraph_format.min.js"></script>
+    <script src="/editor/js/plugins/paragraph_style.min.js"></script>
+    <script src="/editor/js/plugins/quote.min.js"></script>
+    <script src="/editor/js/plugins/save.min.js"></script>
+    <script src="/editor/js/plugins/table.min.js"></script>
+    <script src="/editor/js/plugins/video.min.js"></script>
+    <!-- End Froala -->
+    <!-- angular editor -->
+    <script src="/angular-froala/src/angular-froala.js"></script>
+    <script src="/angular-froala/src/froala-sanitize.js"></script>
     <!-- index.js -->
     <script type="text/javascript" src="/js/admin.js"></script>
     <!-- load all controllers and services files -->
@@ -63,11 +112,14 @@
           </li>
           <li class="xn-title">Chức năng</li>
           <li class="xn-openable">
-            <a href="/modules/admin/#"><span class="fa fa-files-o"></span> <span class="xn-text">Bài viết</span></a>
+            <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Bài viết</span></a>
             <ul>
-              <li><a href="/modules/admin/pages-gallery.html"><span class="fa fa-image"></span> Hạng mục</a></li>
-              <li><a href="/modules/admin/pages-profile.html"><span class="fa fa-user"></span> Bài viết</a></li>
+              <li><a ui-sref="category"><span class="fa fa-image"></span> Hạng mục</a></li>
+              <li><a ui-sref="postmanager"><span class="fa fa-user"></span> Bài viết</a></li>
             </ul>
+          </li>
+          <li>
+            <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
           </li>
         </ul>
         <!-- END X-NAVIGATION -->

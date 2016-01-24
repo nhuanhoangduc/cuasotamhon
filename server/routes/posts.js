@@ -16,7 +16,7 @@ router.get('/id/:id', postService.getById);
 router.post('/getbypage', postService.getByPage);
 
 /* get post by category */
-router.get('/category/:categoryId/:from/:to', userService.checkLogin, postService.getByCategory);
+router.get('/category/:categoryId', userService.checkAdmin, postService.getByCategory);
 
 /* add post */
 router.post('/', userService.checkAdmin, postService.add);

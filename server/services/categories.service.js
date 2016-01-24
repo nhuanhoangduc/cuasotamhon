@@ -35,13 +35,20 @@ var add = function(req, res, next) {
 
 /* remove */
 var remove = function(req, res, next) {
-  Category.remove({
-    _id: req.params.id
+  Post.remove({
+    category: req.params.id
   }, function(err) {
     if (err)
       return next(err);
 
-    res.send(200);
+    Category.remove({
+      _id: req.params.id
+    }, function(err) {
+      if (err)
+        return next(err);
+
+      res.send(200);
+    });
   });
 };
 

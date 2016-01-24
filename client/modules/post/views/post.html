@@ -13,7 +13,7 @@
       </div>
       <div class="post-date"><span class="fa fa-calendar"></span> {{post.date}}</div>
       <div class="post-text">
-        {{post.content}}
+        <div ng-bind-html="getContent(post.content)"></div>
       </div>
       <div class="post-row">
         <div class="post-info">

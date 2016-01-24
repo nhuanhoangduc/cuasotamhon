@@ -1,4 +1,4 @@
-app.controller('postCtrl', function($scope, postService, $stateParams) {
+app.controller('postCtrl', function($scope, postService, $stateParams, $sce) {
   $scope.post = postService.post;
   $scope.isLoading = true;
 
@@ -8,6 +8,10 @@ app.controller('postCtrl', function($scope, postService, $stateParams) {
     postService.getById($stateParams.postId, function() {
       $scope.isLoading = false;
     });
+  };
+
+  $scope.getContent = function(content) {
+    return $sce.trustAsHtml(content);
   };
 
   initData();

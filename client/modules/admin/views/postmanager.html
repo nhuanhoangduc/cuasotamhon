@@ -1,0 +1,101 @@
+<div>
+	<div class="row" ng-if="isAdding || isEditing">
+		<div class="row">
+			<br>
+			<h1 class="col-md-offset-4" ng-if="isAdding">Thêm mới bài viết</h1>
+			<h1 class="col-md-offset-4" ng-if="isEditing">Chỉnh sửa bài viết</h1>
+			<br>
+		</div>
+		<!-- tittle -->
+		<div class="form-group row">
+			<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Tiêu đề</label>
+			<div class="col-md-6 col-xs-12">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+					<input type="text" class="form-control" ng-model="post.title"/>
+				</div>
+				<span class="help-block">Nhập tiêu đề</span>
+			</div>
+		</div>
+		<!-- end title -->
+		<!-- start category -->
+		<div class="form-group row">
+			<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Thể loại</label>
+			<div class="col-md-4 col-xs-12">
+				<select class="form-control select" ng-model="post.category">
+					<option ng-repeat="category in categoryService.categories" value="{{category._id}}">
+						{{category.name}}
+					</option>
+				</select>
+				<span class="help-block">Chọn thể loại cho bài viết</span>
+			</div>
+		</div>
+		<!-- end category -->
+		<!-- start short content -->
+		<div class="form-group row">
+			<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Nội dung tóm tắt</label>
+			<div class="col-md-6 col-xs-12">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+					<input type="text" class="form-control" ng-model="post.shortContent"/>
+				</div>
+				<span class="help-block">Nhập nội dung tóm tắt</span>
+			</div>
+		</div>
+		<!-- end short content -->
+		<!-- start image -->
+		<div class="form-group row">
+			<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Link ảnh đại diện</label>
+			<div class="col-md-6 col-xs-12">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+					<input type="text" class="form-control" ng-model="post.imageUrl"/>
+				</div>
+				<span class="help-block">Nhập link ảnh đại diện</span>
+			</div>
+		</div>
+		<!-- end image -->
+		<!-- start content-->
+		<div class="row">
+			<textarea froala ng-model="post.content"></textarea>
+		</div>
+		<!-- end content -->
+		<!-- start buttons-->
+		<div class="row">
+		<br>
+			<button class="btn btn-success col-md-offset-8" ng-click="save()">Lưu</button>
+			<button class="btn btn-danger" ng-click="cancel()">Hủy</button>
+		</div>
+		<!-- end buttons -->
+	</div>
+	<div class="row" ng-if="!isAdding && !isEditing">
+		</br>
+		<button class="btn btn-info col-md-offset-10" ng-click="add()">Add new post</button>
+	</div>
+	<div class="row" ng-if="!isAdding && !isEditing">
+		</br>
+		<div class="col-md-6" ng-repeat="(categoryName, posts) in allPosts">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3>{{categoryName}}</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							Tổng số bài viết: {{posts.length}}
+							<div class="panel panel-default">
+								<div class="panel-body list-group">
+									<a class="list-group-item" ng-repeat="post in posts">
+										{{post.date}}. {{post.title}}
+										<span class="btn badge badge-danger" ng-click="remove(post._id)">Xóa</span>
+										<span class="btn badge badge-info" ng-click="edit(post)">Sửa</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

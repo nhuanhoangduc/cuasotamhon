@@ -1,4 +1,4 @@
-var app = angular.module('adminApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bootstrap'])
+var app = angular.module('adminApp', ['ui.router', 'froala', 'ngAnimate', 'toastr', 'ui.bootstrap', 'angularMoment'])
   .config(function($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1
@@ -14,5 +14,14 @@ var app = angular.module('adminApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bo
         url: '/category',
         templateUrl: '../modules/admin/views/category.html',
         controller: 'categoryCtrl'
+      })
+      .state('postmanager', {
+        url: '/postmanager',
+        templateUrl: '../modules/admin/views/postmanager.html',
+        controller: 'postmanagerCtrl'
       });
+  })
+  .value('froalaConfig', {
+    toolbarInline: false,
+    placeholderText: 'Enter Text Here'
   });

@@ -60,9 +60,10 @@ var getById = function(req, res, next) {
 
 /* get post by category */
 var getByCategory = function(req, res, next) {
-  Post.find({
-    category: req.params.categoryId
-  })
+  Post
+    .find({
+      category: req.params.categoryId
+    })
     .sort({
       date: -1
     })
@@ -115,7 +116,10 @@ var getByPage = function(req, res, next) {
 
 /* add new */
 var add = function(req, res, next) {
-  Post.create(req.body, function(err, result) {
+  var post = req.body;
+  post.date = new Date();
+
+  Post.create(post, function(err, result) {
     if (err)
       return next(err);
 

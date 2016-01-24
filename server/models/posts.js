@@ -26,7 +26,7 @@ var postSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
+    default:'/images/nhuan.jpg'
   }
 });
 

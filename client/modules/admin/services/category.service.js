@@ -9,6 +9,17 @@ app.factory('categoryService', function($http, toastr) {
   var service = {
     categories: [],
 
+    getAllCallback: function(callback) {
+      $http.get('/categories').then(function success(response) {
+        updateCategories(service.categories, response.data);
+        callback();
+      }, function error() {
+        toastr.error('Không cập nhật được nội dung, vui lòng xem lại đường truyền', 'Lỗi đường truyền', {
+          closeButton: true
+        });
+      })
+    },
+
     getAll: function() {
       $http.get('/categories').then(function success(response) {
         updateCategories(service.categories, response.data);
