@@ -4,7 +4,7 @@ var userService = require('../services/users.service');
 var categoryService = require('../services/categories.service');
 
 /* get all categories */
-router.get('/', userService.checkAdmin, categoryService.getAll);
+router.get('/', categoryService.getAll);
 
 /* add category */
 router.post('/', userService.checkAdmin, categoryService.add);

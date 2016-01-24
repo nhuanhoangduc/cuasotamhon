@@ -6,6 +6,15 @@ var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bo
     //
     // Now set up the states
     $stateProvider
+      .state('redirect', {
+        url: '',
+        template: '',
+        controller: function($state) {
+          $state.go('indexState', {
+            pageNumber: 1
+          });
+        }
+      })
       .state('indexState', {
         url: '/index?pageNumber&categoryId',
         templateUrl: 'modules/index/views/index.html',

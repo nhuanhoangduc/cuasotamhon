@@ -38,6 +38,7 @@ var getCurrentUser = function(req, res, next) {
       isActivated: user.isActivated,
       imgUrl: user.imgUrl,
       job: user.job,
+      address: user.address,
       isLogin: true
     });
   } else {
@@ -74,12 +75,12 @@ var add = function(req, res, next) {
     if (err)
       return next(err);
 
-    modemService.sendMessage('Mã kích hoạt của bạn là ' + code, user.phone, function(err) {
-      if (err)
-        console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' bị lỗi!');
+    // modemService.sendMessage('Mã kích hoạt của bạn là ' + code, user.phone, function(err) {
+    //   if (err)
+    //     console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' bị lỗi!');
 
-      console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' thành công!');
-    });
+    //   console.log('Tin nhắn gửi đến số điện thoại ' + user.phone + ' thành công!');
+    // });
 
     res.send(user);
   });

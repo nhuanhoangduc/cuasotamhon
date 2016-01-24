@@ -1,0 +1,53 @@
+<div>
+	</br>
+	</br>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-5">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">Danh sách hạng mục</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-body list-group">
+									<a class="list-group-item" ng-repeat="category in service.categories">
+										{{$index+1}}. {{category.name}}
+										<span class="btn badge badge-danger" ng-click="remove(category._id)">Xóa</span>
+										<span class="btn badge badge-info" ng-click="edit(category)">Sửa</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 ng-if="isAdding">Thêm mới hạng mục</h3>
+					<h3 ng-if="!isAdding">Chỉnh sửa hạng mục</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group row">
+						<label class="col-md-3 col-xs-12 control-label">Tên hạng mục</label>
+						<div class="col-md-8 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+								<input type="text" class="form-control" ng-model="category.name"/>
+							</div>
+							<span class="help-block">Nhập tên hạng mục</span>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<button class="btn btn-info col-md-offset-10" ng-if="isAdding" ng-click="add()">Thêm</button>
+					<button class="btn btn-success col-md-offset-8" ng-if="!isAdding" ng-click="save()">Lưu</button>
+					<button class="btn btn-default" ng-if="!isAdding" ng-click="cancel()">Hủy</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
