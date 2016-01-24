@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install --force-latest",
     "start": "node ./server/server.js"
   },
   "dependencies": {
