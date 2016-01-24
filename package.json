@@ -2,10 +2,6 @@
   "name": "cuasotamhon",
   "version": "1.0",
   "private": true,
-  "engines": {
-    "node": "4.1.1",
-    "npm": "2.1.x"
-  },
   "scripts": {
     "postinstall": "bower install",
     "start": "node ./server/server.js"
