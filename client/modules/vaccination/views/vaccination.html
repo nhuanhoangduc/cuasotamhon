@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-12">
+		
+		<!-- START TIMELINE -->
+		<div class="timeline timeline-right" ng-repeat="(year, vacxins) in schedules">
+			
+			<!-- START TIMELINE ITEM -->
+			<div class="timeline-item timeline-main">
+				<div class="timeline-date">Năm {{year}}</div>
+			</div>
+			<!-- END TIMELINE ITEM -->
+			
+			<!-- START TIMELINE ITEM -->
+			<div class="timeline-item timeline-item-right" ng-repeat="vacxin in vacxins">
+				<div class="timeline-item-info">Tháng {{vacxin.month}}</div>
+				<div class="timeline-item-icon"><span class="fa fa-globe"></span></div>
+				<div class="timeline-item-content">
+					<div class="timeline-footer">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Loại vacxin</th>
+									<th>Lịch tiêm</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="content in vacxin.content">
+									<td>{{content.vacxin}}</td>
+									<td>{{content.note}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- END TIMELINE ITEM -->
+		</div>
+		<!-- END TIMELINE -->
+		
+	</div>
+</div>

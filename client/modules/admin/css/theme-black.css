@@ -202,6 +202,7 @@ body {
 .page-container .page-content .page-content-wrap {
   float: left;
   width: 100%;
+  min-height: 1000px;
 }
 .page-container.page-container-wide .page-content {
   margin-left: 50px;

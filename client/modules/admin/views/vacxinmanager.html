@@ -1,0 +1,97 @@
+<div>
+	</br>
+	</br>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">Danh sách lịch tiêm chủng</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Năm</th>
+								<th>Tháng</th>
+								<th>Vacxin - Lịch tiêm</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="vacxin in service.schedules">
+								<td>{{vacxin.year}}</td>
+								<td>{{vacxin.month}}</td>
+								<td>
+									<span ng-repeat="content in vacxin.content">
+										{{content.vacxin}} - {{content.note}}
+										<br>
+									</span>
+								</td>
+								<td>
+									<button class="btn btn-danger btn-xs" ng-click="remove(vacxin._id)">Delete</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 ng-if="isAdding">Thêm mới lịch tiêm chủng</h3>
+					<h3 ng-if="!isAdding">Chỉnh sửa lịch tiêm chủng</h3>
+				</div>
+				<div class="panel-body">
+					
+					<!-- start year -->
+					<div class="form-group row">
+						<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Năm</label>
+						<div class="col-md-4 col-xs-12">
+							<select class="form-control select" ng-model="vacxin.year">
+								<option ng-repeat="year in years" value="{{year}}">
+									{{year}}
+								</option>
+							</select>
+							<span class="help-block">Chọn năm</span>
+						</div>
+					</div>
+					<!-- end year -->
+					<!-- start month -->
+					<div class="form-group row">
+						<label class="col-md-offset-1 col-md-2 col-xs-12 control-label">Tháng</label>
+						<div class="col-md-4 col-xs-12">
+							<select class="form-control select" ng-model="vacxin.month">
+								<option ng-repeat="month in months" value="{{month}}">
+									{{month}}
+								</option>
+							</select>
+							<span class="help-block">Chọn tháng</span>
+						</div>
+					</div>
+					<!-- end month -->
+					
+					<!-- start content -->
+					<div class="row">
+						<div class="col-md-5">Loại vacxin</div>
+						<div class="col-md-7">Lịch tiêm</div>
+						<div class="col-md-5"><textarea ng-model="list[1].vacxin"></textarea></div>
+						<div class="col-md-7"><textarea ng-model="list[1].note"></textarea></div>
+						<div class="col-md-5"><textarea ng-model="list[2].vacxin"></textarea></div>
+						<div class="col-md-7"><textarea ng-model="list[2].note"></textarea></div>
+						<div class="col-md-5"><textarea ng-model="list[3].vacxin"></textarea></div>
+						<div class="col-md-7"><textarea ng-model="list[3].note"></textarea></div>
+						<div class="col-md-5"><textarea ng-model="list[4].vacxin"></textarea></div>
+						<div class="col-md-7"><textarea ng-model="list[4].note"></textarea></div>
+					</div>
+					<!-- end content -->
+				</div>
+				<div class="panel-footer">
+					<button class="btn btn-info col-md-offset-10" ng-if="isAdding" ng-click="add()">Thêm</button>
+					<button class="btn btn-success col-md-offset-8" ng-if="!isAdding" ng-click="save()">Lưu</button>
+					<button class="btn btn-default" ng-if="!isAdding" ng-click="cancel()">Hủy</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

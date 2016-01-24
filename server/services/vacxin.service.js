@@ -13,12 +13,18 @@ var LichTiemChung = require('../models/lichTiemChungs');
 
 /* show all lich tiem chung */
 var getAll = function(req, res, next) {
-  LichTiemChung.find({}, function(err, results) {
-    if (err)
-      return next(err);
+  LichTiemChung
+    .find({})
+    .sort({
+      year: 1,
+      month: 1
+    })
+    .exec(function(err, results) {
+      if (err)
+        return next(err);
 
-    res.send(results);
-  });
+      res.send(results);
+    });
 };
 
 /* add new */

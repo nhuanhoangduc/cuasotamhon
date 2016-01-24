@@ -19,6 +19,11 @@ var app = angular.module('adminApp', ['ui.router', 'froala', 'ngAnimate', 'toast
         url: '/postmanager',
         templateUrl: '../modules/admin/views/postmanager.html',
         controller: 'postmanagerCtrl'
+      })
+      .state('vacxinmanager', {
+        url: '/vacxinmanager',
+        templateUrl: '../modules/admin/views/vacxinmanager.html',
+        controller: 'vacxinmanagerCtrl'
       });
   })
   .value('froalaConfig', {

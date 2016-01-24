@@ -4,7 +4,7 @@ var userService = require('../services/users.service');
 var vacxinService = require('../services/vacxin.service');
 
 /* get all lich tiem chung */
-router.get('/', userService.checkLogin, vacxinService.getAll);
+router.get('/', vacxinService.getAll);
 
 /* add lich tiem chung */
 router.post('/', userService.checkAdmin, vacxinService.add);

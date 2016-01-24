@@ -29,5 +29,10 @@ var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bo
         url: '/profile',
         templateUrl: '../modules/profile/views/profile.html',
         controller: 'profileCtrl'
+      })
+      .state('vacxin', {
+        url: '/vacxin',
+        templateUrl: 'modules/vaccination/views/vaccination.html',
+        controller: 'vacxinCtrl'
       });
   });
