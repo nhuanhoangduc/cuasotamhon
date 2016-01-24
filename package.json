@@ -1,10 +1,13 @@
 {
   "name": "cuasotamhon",
-  "version": "0.0.0",
+  "version": "1.0",
   "private": true,
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
     "start": "node ./server/server.js"
+  },
+  "engines": {
+    "node": "4.1.1"
   },
   "dependencies": {
     "async": "^1.5.2",
