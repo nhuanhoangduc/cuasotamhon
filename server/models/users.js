@@ -44,12 +44,10 @@ var userSchema = new Schema({
   },
   job: {
     type: String,
-    required: true,
     default: 'Nghề nghiệp'
   },
   address: {
     type: String,
-    required: true,
     default: 'Địa chỉ'
   }
 });

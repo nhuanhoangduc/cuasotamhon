@@ -5,7 +5,7 @@
 /* init variables */
 var User = require('../models/users');
 var randomString = require('random-string');
-// var modemService = require('./modem.service');
+var smsService = require('./sms.service');
 
 
 /*
@@ -64,7 +64,7 @@ var getById = function(req, res, next) {
 var add = function(req, res, next) {
   var code = randomString({
     length: 8,
-    numeric: true,
+    numeric: false,
     letters: true,
     special: false
   });
@@ -74,7 +74,7 @@ var add = function(req, res, next) {
   User.create(newUser, function(err, user) {
     if (err)
       return next(err);
-
+    smsService.sendMessage('Chào mừng bạn đến với website cuasotamhon !!', user.phone);
     res.send(user);
   });
 };
