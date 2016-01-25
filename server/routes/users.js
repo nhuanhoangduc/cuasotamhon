@@ -26,4 +26,10 @@ router.post('/login', userService.login);
 /* logout */
 router.get('/logout', userService.checkLogin, userService.logout);
 
+/* resend code */
+router.post('/active/resend', userService.checkLogin, userService.resendCode);
+
+/* active */
+router.post('/active', userService.checkLogin, userService.active);
+
 module.exports = router;

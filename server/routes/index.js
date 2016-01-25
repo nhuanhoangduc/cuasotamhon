@@ -35,7 +35,7 @@ var renderAdmin = function(req, res, next) {
 router.get('/', renderIndex);
 
 /* GET profile page. */
-router.get('/edit', renderProfile);
+router.get('/edit', userService.checkActived, renderProfile);
 
 /* GET admin page. */
 router.get('/admin', userService.checkAdmin, renderAdmin);

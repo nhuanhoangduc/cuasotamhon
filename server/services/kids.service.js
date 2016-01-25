@@ -5,6 +5,9 @@
 
 /* init variables */
 var Kid = require('../models/kids');
+var LichTiemChung = require('../models/lichTiemChungs');
+var User = require('../models/users');
+var async = require('async');
 
 
 /*
@@ -23,24 +26,130 @@ var getAll = function(req, res, next) {
 
 /* add new */
 var add = function(req, res, next) {
-  Kid.create(req.body, function(err, result) {
-    if (err)
-      return next(err);
+  var kid = req.body;
+  var sass = req.session;
 
-    res.send(result);
-  });
+  if (sass.user) {
+    var userId = sass.user._id;
+
+    async.waterfall([
+        // load schedules
+        function(nextItem) {
+          LichTiemChung.find({}, function(err, schedules) {
+            nextItem(err, schedules);
+          });
+        },
+
+        // add kid
+        function(schedules, nextItem) {
+          for (var i = 0; i < schedules.length; i++) {
+            schedules[i].isInjected = false;
+          };
+
+          kid.schedules = schedules;
+
+          Kid.create(kid, function(err, result) {
+            if (err)
+              nextItem(err);
+
+            nextItem(null, result._id)
+          });
+        },
+
+        // find user
+        function(kidId, nextItem) {
+          User
+            .findOne({
+              _id: userId
+            })
+            .exec(function(err, user) {
+              nextItem(err, user, kidId);
+            });
+        },
+
+        //update user's kids
+        function(user, kidId, nextItem) {
+          user.kids.push({
+            _id: kidId
+          });
+
+          User.update({
+            _id: user._id
+          }, user, function(err) {
+            nextItem(err);
+          });
+        }
+
+      ],
+      function done(err) {
+        if (err)
+          return next(err);
+
+        return res.send(200);
+      });
+  } else {
+    res.send(404);
+  }
+
 };
 
 /* remove */
 var remove = function(req, res, next) {
-  Kid.remove({
-    _id: req.params.id
-  }, function(err) {
-    if (err)
-      return next(err);
+  var sass = req.session;
+  var kidId = req.params.id;
 
-    res.send(200);
-  });
+
+  if (sass.user) {
+    async.waterfall([
+
+      // delele user's kid
+      function(nextItem) {
+        User.findOne({
+          _id: sass.user._id
+        }, function(err, user) {
+          if (err)
+            return nextItem(err);
+
+          for (var i = 0; i < user.kids.length; i++) {
+            var id = user.kids[i];
+            if (id.toString().trim() === kidId.trim()) {
+              user.kids.splice(i, i + 1);
+              break;
+            }
+          }
+
+          nextItem(null, user);
+        });
+      },
+
+      // update user
+      function(user, nextItem) {
+        User.update({
+          _id: user._id
+        }, user, function(err) {
+          nextItem(err);
+        });
+      },
+
+      // remove kid
+      function(nextItem) {
+        Kid.remove({
+          _id: kidId
+        }, function(err) {
+          nextItem(err);
+        });
+      }
+
+    ], function done(err) {
+      if (err)
+        return next(err);
+
+      res.send(200);
+    });
+  } else {
+    res.send(404);
+  }
+
 };
 
 /* edit */

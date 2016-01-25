@@ -8,7 +8,7 @@ var app = angular.module('adminApp', ['ui.router', 'froala', 'ngAnimate', 'toast
     $stateProvider
       .state('redirect', {
         url: '',
-        template: 'nhuan dien'
+        template: '<h1> Chọn menu quản lý bên trái </h1>'
       })
       .state('category', {
         url: '/category',
