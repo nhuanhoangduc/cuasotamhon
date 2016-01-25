@@ -3,29 +3,29 @@
  */
 
 
-/* init variables */
-var modem = require('../configs/modem');
+// /* init variables */
+// var modem = require('../configs/modem');
 
 
-/*
- * services
- */
+// /*
+//  * services
+//  */
 
-/* send a message to a phone number */
-var sendMessage = function(content, phone, callback) {
-  var message = {
-    text: content,
-    receiver: phone,
-    encoding: '16bit'
-  };
+// /* send a message to a phone number */
+// var sendMessage = function(content, phone, callback) {
+//   var message = {
+//     text: content,
+//     receiver: phone,
+//     encoding: '16bit'
+//   };
 
-  modem.sms(message, function(err) {
-    callback(err);
-  });
-};
+//   modem.sms(message, function(err) {
+//     callback(err);
+//   });
+// };
 
 
-/* export services */
-module.exports = {
-  sendMessage: sendMessage
-}
+// /* export services */
+// module.exports = {
+//   sendMessage: sendMessage
+// }
