@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>Cửa sổ tâm hồn</title>
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- Custom Stylesheet -->
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<!-- angular / angular ui route -->
+		<script type="text/javascript" src="/angular/angular.min.js"></script>
+		<!-- ng toastr -->
+		<script src="/angular-animate/angular-animate.min.js"></script>
+		<script src="/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+		<!-- app -->
+		<script type="text/javascript" src="/register/register.js"></script>
+	</head>
+	<body ng-controller="registerCtrl">
+		<div class="container">
+			<div class="login-box animated fadeInUp">
+				<div class="box-header">
+					<h2>Đăng ký</h2>
+				</div>
+				<label for="username">Tên đăng nhập</label>
+				<br/>
+				<span ng-if="!checkUsername()"><font color="red" size="2">* Nhập tên đăng nhập</font></span>
+				<br/>
+				<input type="text" id="username" ng-model="user.username">
+				<br/>
+				<label for="password">Mật khẩu</label>
+				<br/>
+				<span ng-if="!checkPassword()"><font color="red" size="2">* Nhập mật khẩu</font></span>
+				<br/>
+				<input type="password" id="password" ng-model="user.password">
+				<br/>
+				<label for="repassword">Nhập lại mật khẩu</label>
+				<br/>
+				<span ng-if="!checkMatchPassword()"><font color="red" size="2">* Mật khẩu chưa khớp</font></span>
+				<br/>
+				<input type="password" id="repassword" ng-model="password">
+				<br/>
+				<label for="phone">Số điện thoại</label>
+				<br/>
+				<span ng-if="!checkPhone()"><font color="red" size="2">* Nhập đúng số điện thoại</font></span>
+				<br/>
+				<input type="text" id="phone" ng-model="user.phone">
+				<br/>
+				<button ng-click="add()" ng-disabled="!isValid()">Đăng ký</button>
+				<br/>
+				<a href="/#/index?pageNumber=1"><p class="small">Về trang chủ</p></a>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function () {
+		$('#logo').addClass('animated fadeInDown');
+		$("input:text:visible:first").focus();
+		});
+		$('#username').focus(function() {
+			$('label[for="username"]').addClass('selected');
+		});
+		$('#username').blur(function() {
+			$('label[for="username"]').removeClass('selected');
+		});
+		$('#password').focus(function() {
+			$('label[for="password"]').addClass('selected');
+		});
+		$('#password').blur(function() {
+			$('label[for="password"]').removeClass('selected');
+		});
+	</script>
+</html>

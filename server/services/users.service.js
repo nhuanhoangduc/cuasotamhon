@@ -74,7 +74,7 @@ var add = function(req, res, next) {
   User.create(newUser, function(err, user) {
     if (err)
       return next(err);
-    smsService.sendMessage('Chào mừng bạn đến với website cuasotamhon !!', user.phone);
+    // smsService.sendMessage('Chào mừng bạn đến với website cuasotamhon !!', user.phone);
     res.send(user);
   });
 };
