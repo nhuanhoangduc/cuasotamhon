@@ -15,6 +15,10 @@ var kidSchema = new Schema({
     enum: ['boy', 'girl'],
     default: 'boy'
   },
+  imageUrl: {
+    type: String,
+    default: 'http://www.ivillage.ca/sites/default/files/use-sign-language636.jpg'
+  },
   schedules: []
 });
 

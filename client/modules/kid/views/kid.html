@@ -1,0 +1,89 @@
+<div ng-show="service.user.isLogin">
+  <!-- START ADDING OR EDITING A KID -->
+  <div ng-show="isAdding || isUpdating">
+    <div class="row">
+      <h2 class="col-md-offset-5">Thêm mới</h2></br>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Tên bé</label>
+      <div class="col-md-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+          <input type="text" class="form-control" ng-model="kid.name"/>
+        </div>
+        <span class="help-block">Nhập tên của bé</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Ngày sinh</label>
+      <div class="col-md-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+          <input type="date" class="form-control" value="2000-12-31" ng-model="kid.dob">
+        </div>
+        <span class="help-block">Nhập ngày sinh</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Giới tính</label>
+      <div class="col-md-2 col-xs-12">
+        <select class="form-control select" ng-model="kid.sex">
+          <option value="boy" selected>Trai</option>
+          <option value="girl">Gái</option>
+        </select>
+        <span class="help-block">Chọn giới tính</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Ảnh đại diện</label>
+      <div class="col-md-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+          <input type="text" class="form-control" ng-model="kid.imageUrl"/>
+        </div>
+        <span class="help-block">Link ảnh đại diện</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-offset-7">
+        <button class="btn btn-info" ng-click="save()" ng-if="isAdding">Thêm mới</button>
+        <button class="btn btn-info" ng-click="save()" ng-if="isUpdating">Lưu</button>
+        <button class="btn btn-default" ng-click="cancel()">Hủy</button>
+      </div>
+    </div>
+  </div>
+  <!-- END ADDING OR EDITING -->
+  <!-- CONTACT ITEM -->
+  <div ng-show="!isAdding && !isUpdating">
+    <br>
+    <div class="row">
+      <button class="btn btn-success col-md-3" ng-click="add()">Thêm mới</button>
+    </div>
+    <br>
+    <div ng-repeat="theKid in service.user.kids">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body profile">
+            <div class="profile-image">
+              <img ng-src="{{theKid.imageUrl}}" alt="Nadia Ali"/>
+            </div>
+            <div class="profile-data">
+              <div class="profile-data-name">{{theKid.name}}</div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="contact-info">
+              <p><small>Ngày sinh</small><br/>{{getDate(theKid.dob)}}</p>
+              <p><small>Giới tính</small><br/>
+                <span ng-show="theKid.sex == 'boy'">Trai</span>
+                <span ng-show="theKid.sex == 'girl'">Gái</span>
+              </p>
+              <p><small>Lịch tiêm chủng</small><br/><a>Hiện</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CONTACT ITEM -->
+</div>

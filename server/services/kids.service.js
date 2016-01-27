@@ -27,10 +27,10 @@ var getAll = function(req, res, next) {
 /* add new */
 var add = function(req, res, next) {
   var kid = req.body;
-  var sass = req.session;
+  var sess = req.session;
 
-  if (sass.user) {
-    var userId = sass.user._id;
+  if (sess.user) {
+    var userId = sess.user._id;
 
     async.waterfall([
         // load schedules
@@ -52,6 +52,7 @@ var add = function(req, res, next) {
             if (err)
               nextItem(err);
 
+            sess.user.kids.push(result);
             nextItem(null, result._id)
           });
         },
@@ -95,17 +96,17 @@ var add = function(req, res, next) {
 
 /* remove */
 var remove = function(req, res, next) {
-  var sass = req.session;
+  var sess = req.session;
   var kidId = req.params.id;
 
 
-  if (sass.user) {
+  if (sess.user) {
     async.waterfall([
 
       // delele user's kid
       function(nextItem) {
         User.findOne({
-          _id: sass.user._id
+          _id: sess.user._id
         }, function(err, user) {
           if (err)
             return nextItem(err);

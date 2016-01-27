@@ -120,16 +120,19 @@ var edit = function(req, res, next) {
 var login = function(req, res, next) {
   var sess = req.session;
 
-  User.findOne({
-    username: req.body.username,
-    password: req.body.password
-  }, function(err, user) {
-    if (err || user === null)
-      return next(err);
+  User
+    .findOne({
+      username: req.body.username,
+      password: req.body.password
+    })
+    .populate('kids')
+    .exec(function(err, user) {
+      if (err || user === null)
+        return next(err);
 
-    sess.user = user;
-    res.send(user);
-  });
+      sess.user = user;
+      res.send(user);
+    });
 };
 
 /* logout */

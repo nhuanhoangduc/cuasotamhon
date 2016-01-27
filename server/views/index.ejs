@@ -50,12 +50,12 @@
             
             <!-- END SEARCH -->
             <!-- SIGN OUT -->
-            <li class="xn-icon-button pull-right">
+            <li class="xn-icon-button pull-right" ng-show="service.user.isLogin">
               <a href="#" class="mb-control" ng-click="logout()"><span class="fa fa-sign-out"></span></a>
             </li>
             <!-- END SIGN OUT -->
             <!-- user profile -->
-            <li class="xn-icon-button pull-right" ng-if="isLogin()">
+            <li class="xn-icon-button pull-right" ng-show="service.user.isLogin">
               <a href="#"><span class="fa fa-comments"></span></a>
               <div class="informer informer-danger">4</div>
               <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">

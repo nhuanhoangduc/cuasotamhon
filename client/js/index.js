@@ -30,6 +30,11 @@ var app = angular.module('nhuanApp', ['ui.router', 'ngAnimate', 'toastr', 'ui.bo
         templateUrl: '../modules/profile/views/profile.html',
         controller: 'profileCtrl'
       })
+      .state('kid', {
+        url: '/kid',
+        templateUrl: '../modules/kid/views/kid.html',
+        controller: 'kidCtrl'
+      })
       .state('vacxin', {
         url: '/vacxin',
         templateUrl: 'modules/vaccination/views/vaccination.html',
