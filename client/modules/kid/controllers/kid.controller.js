@@ -27,6 +27,7 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
   /* prepare data for updating */
   $scope.edit = function(kid) {
     $scope.isUpdating = true;
+    delete kid.dob;
     $scope.kid = kid;
   };
 
@@ -49,7 +50,7 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
           $scope.service.getCurrentUser();
         }, function error() {
           // notification error
-          toastr.error('Kiểm tra đường truyền', 'Thất bại', {
+          toastr.error('Kiểm tra đường truyền hoặc chưa nhập đủ thông tin', 'Thất bại', {
             closeButton: true
           });
         });
@@ -58,7 +59,7 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
         .put('/kids', $scope.kid)
         .then(function success(response) {
           // notification
-          toastr.success('Thêm mới thành công', 'Thành công', {
+          toastr.success('Cập nhật thông tin hoặc chưa nhập đủ thông tin', 'Thành công', {
             closeButton: true
           });
 
@@ -73,6 +74,48 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
     }
 
     $scope.cancel();
+  };
+
+  /* update schedules */
+  $scope.updateSchedules = function(kid) {
+    $http
+      .put('/kids', kid)
+      .then(function success(response) {
+        // notification
+        toastr.success('Cập nhật lịch tiêm chủng', 'Thành công', {
+          closeButton: true
+        });
+
+        // update data
+        $scope.service.getCurrentUser();
+      }, function error() {
+        // notification error
+        toastr.error('Kiểm tra đường truyền', 'Thất bại', {
+          closeButton: true
+        });
+      });
+  };
+
+  /* delete kid */
+  $scope.remove = function(kidId) {
+    if (confirm('Bạn có muốn xóa dữ liệu ?')) {
+      $http
+        .delete('/kids/' + kidId)
+        .then(function success(response) {
+          // notification
+          toastr.success('Xóa thành công', 'Thành công', {
+            closeButton: true
+          });
+
+          // update data
+          $scope.service.getCurrentUser();
+        }, function error() {
+          // notification error
+          toastr.error('Kiểm tra đường truyền', 'Thất bại', {
+            closeButton: true
+          });
+        });
+    }
   };
 
 });

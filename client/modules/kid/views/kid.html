@@ -19,7 +19,7 @@
       <div class="col-md-6 col-xs-12">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-          <input type="date" class="form-control" value="2000-12-31" ng-model="kid.dob">
+          <input type="date" class="form-control" ng-model="kid.dob">
         </div>
         <span class="help-block">Nhập ngày sinh</span>
       </div>
@@ -61,7 +61,7 @@
     </div>
     <br>
     <div ng-repeat="theKid in service.user.kids">
-      <div class="col-md-4">
+      <div class="col-md-4" ng-init="theKid.show=false">
         <div class="panel panel-default">
           <div class="panel-body profile">
             <div class="profile-image">
@@ -78,7 +78,30 @@
                 <span ng-show="theKid.sex == 'boy'">Trai</span>
                 <span ng-show="theKid.sex == 'girl'">Gái</span>
               </p>
-              <p><small>Lịch tiêm chủng</small><br/><a>Hiện</a></p>
+              <p><small>Lịch tiêm chủng</small><br/><input type="checkbox" ng-model="theKid.show"/> Hiện lịch tiêm chủng</p>
+              <hr/>
+              <!-- start schedule of vaccination -->
+              <div ng-show="theKid.show">
+                <!-- start list -->
+                <p ng-repeat="schedule in theKid.schedules">
+                  <small>
+                  <input type="checkbox" ng-model="schedule.isInjected"/>
+                  {{'Năm ' + schedule.year + ' tháng thứ ' + schedule.month}}
+                  </small>
+                  <span ng-repeat="vacxin in schedule.content">
+                    <br/>{{vacxin.vacxin}}
+                  </span>
+                </p>
+                <!-- end list -->
+              </div>
+              <!-- end schedule of vaccination -->
+              <!-- start tools -->
+              <div>
+                <button class="btn btn-warning btn-xs" ng-show="!theKid.show" ng-click="edit(theKid)">Chỉnh sửa</button>
+                <button class="btn btn-danger btn-xs" ng-show="!theKid.show" ng-click="remove(theKid._id)">Xóa</button>
+                <button class="btn btn-success btn-xs" ng-show="theKid.show" ng-click="updateSchedules(theKid)">Cập nhật</button>
+              </div>
+              <!-- end tools -->
             </div>
           </div>
         </div>

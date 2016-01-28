@@ -42,15 +42,22 @@ var add = function(req, res, next) {
 
         // add kid
         function(schedules, nextItem) {
-          for (var i = 0; i < schedules.length; i++) {
-            schedules[i].isInjected = false;
-          };
+          kid.schedules = [];
 
-          kid.schedules = schedules;
+          // push schedules to kid schedules
+          for (var i = 0; i < schedules.length; i++) {
+            var schedule = schedules[i];
+            kid.schedules.push({
+              month: schedule.month,
+              year: schedule.year,
+              content: schedule.content,
+              isInjected: false
+            });
+          };
 
           Kid.create(kid, function(err, result) {
             if (err)
-              nextItem(err);
+              return nextItem(err);
 
             sess.user.kids.push(result);
             nextItem(null, result._id)
@@ -103,50 +110,61 @@ var remove = function(req, res, next) {
   if (sess.user) {
     async.waterfall([
 
-      // delele user's kid
-      function(nextItem) {
-        User.findOne({
-          _id: sess.user._id
-        }, function(err, user) {
-          if (err)
-            return nextItem(err);
+        // delele user's kid
+        function(nextItem) {
+          User.findOne({
+            _id: sess.user._id
+          }, function(err, user) {
+            if (err)
+              return nextItem(err);
 
-          for (var i = 0; i < user.kids.length; i++) {
-            var id = user.kids[i];
-            if (id.toString().trim() === kidId.trim()) {
-              user.kids.splice(i, i + 1);
-              break;
+            for (var i = 0; i < user.kids.length; i++) {
+              var id = user.kids[i];
+              if (id.toString().trim() === kidId.trim()) {
+                user.kids.splice(i, i + 1);
+                break;
+              }
             }
-          }
 
-          nextItem(null, user);
-        });
-      },
+            // update session 
+            for (var i = 0; i < sess.user.kids.length; i++) {
+              var theKid = sess.user.kids[i];
 
-      // update user
-      function(user, nextItem) {
-        User.update({
-          _id: user._id
-        }, user, function(err) {
-          nextItem(err);
-        });
-      },
+              if (theKid._id === kidId) {
+                sess.user.kids.splice(i, i + 1);
+                break;
+              }
+            }
 
-      // remove kid
-      function(nextItem) {
-        Kid.remove({
-          _id: kidId
-        }, function(err) {
-          nextItem(err);
-        });
-      }
+            nextItem(null, user);
+          });
+        },
 
-    ], function done(err) {
-      if (err)
-        return next(err);
+        // update user
+        function(user, nextItem) {
+          User.update({
+            _id: user._id
+          }, user, function(err) {
+            nextItem(err);
+          });
+        },
 
-      res.send(200);
-    });
+        // remove kid
+        function(nextItem) {
+          Kid.remove({
+            _id: kidId
+          }, function(err) {
+            nextItem(err);
+          });
+        }
+
+      ],
+      function done(err) {
+        if (err)
+          return next(err);
+
+        res.send(200);
+      });
   } else {
     res.send(404);
   }
@@ -155,11 +173,24 @@ var remove = function(req, res, next) {
 
 /* edit */
 var edit = function(req, res, next) {
+  var kid = req.body;
+  var sess = req.session;
+
   Kid.update({
-    _id: req.body._id
+    _id: kid._id
   }, req.body, function(err) {
     if (err)
       return next(err);
+
+    // update session 
+    for (var i = 0; i < sess.user.kids.length; i++) {
+      var theKid = sess.user.kids[i];
+
+      if (kid._id === theKid._id) {
+        sess.user.kids[i] = kid;
+        break;
+      }
+    }
 
     res.send(200);
   });
