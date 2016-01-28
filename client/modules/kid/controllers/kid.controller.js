@@ -59,7 +59,7 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
         .put('/kids', $scope.kid)
         .then(function success(response) {
           // notification
-          toastr.success('Cập nhật thông tin hoặc chưa nhập đủ thông tin', 'Thành công', {
+          toastr.success('Đã cập nhật thông tin', 'Thành công', {
             closeButton: true
           });
 
