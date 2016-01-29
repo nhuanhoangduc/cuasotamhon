@@ -3,17 +3,17 @@
 		
 		<!-- loading data -->
 		<div>
-			<span ng-if="isLoading">
+			<span ng-show="isLoading">
 				<i class="fa fa-spinner fa-spin"></i> Đang tải dữ liệu ....
 			</span>
 		</div>
 		<div>
-			<span ng-if="service.posts.length <= 0">
+			<span ng-show="service.posts.length <= 0">
 				<i class="fa fa-warning"></i> Không có bài viết trong mục này
 			</span>
 		</div>
 		<!-- start content -->
-		<div ng-repeat="post in service.posts">
+		<div ng-show="!isLoading" ng-repeat="post in service.posts">
 			<div ng-class="{'row':$index%2==1}">
 				<div class="col-md-6">
 					
