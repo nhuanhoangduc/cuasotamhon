@@ -55,7 +55,7 @@
             </li>
             <!-- END SIGN OUT -->
             <!-- user profile -->
-            <li class="xn-icon-button pull-right" ng-if="isLogin()">
+            <li class="xn-icon-button pull-right" ng-show="service.user.isLogin">
               <a href="#"><span class="fa fa-comments"></span></a>
               <div class="informer informer-danger">4</div>
               <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
@@ -120,15 +120,15 @@
                       </div>
                     </div>
                     <div class="list-group-item">
-                      <a href="#" class="col-md-offset-3 col-md-5 col-xs-12">Đăng ký tài khoản</a>
+                      <a href="/register" class="col-md-offset-3 col-md-5 col-xs-12">Đăng ký tài khoản</a>
                       <button class="btn btn-primary col-md-2 col-xs-12"  ng-click="login(username, password)">Login</button>
                     </div>
                   </div>
                   <!-- profile -->
                   <div ng-if="service.user.isLogin">
-                    <a href="#" class="list-group-item">
+                    <a href="/edit/#/profile" class="list-group-item">
                       <div class="list-group-status status-online"></div>
-                      <img src="http://data.whicdn.com/images/50955554/large.jpg" class="pull-left" alt="John Doe"/>
+                      <img ng-src="{{service.user.imgUrl}}" class="pull-left" alt="John Doe"/>
                       <span class="contacts-title">{{service.user.fullName}}</span>
                       <p>Điện thoại - {{service.user.phone}}</p>
                     </a>
@@ -147,7 +147,7 @@
                     <div class="list-group-item">
                       <div class="row">
                         <div class="col-md-4">Địa chỉ</div>
-                        <div class="col-md-8">Công việc</div>
+                        <div class="col-md-8">{{service.user.address}}</div>
                       </div>
                     </div>
                   </div>

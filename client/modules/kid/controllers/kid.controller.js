@@ -53,6 +53,9 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
           toastr.error('Kiểm tra đường truyền hoặc chưa nhập đủ thông tin', 'Thất bại', {
             closeButton: true
           });
+
+          // update data
+          $scope.service.getCurrentUser();
         });
     } else if ($scope.isUpdating) {
       $http
@@ -67,9 +70,12 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
           $scope.service.getCurrentUser();
         }, function error() {
           // notification error
-          toastr.error('Kiểm tra đường truyền', 'Thất bại', {
+          toastr.error('Kiểm tra đường truyền hoặc chưa nhập đủ thông tin', 'Thất bại', {
             closeButton: true
           });
+
+          // update data
+          $scope.service.getCurrentUser();
         });
     }
 
@@ -93,6 +99,9 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
         toastr.error('Kiểm tra đường truyền', 'Thất bại', {
           closeButton: true
         });
+
+        // update data
+        $scope.service.getCurrentUser();
       });
   };
 
@@ -114,6 +123,9 @@ app.controller('kidCtrl', function($scope, $http, profileService, toastr) {
           toastr.error('Kiểm tra đường truyền', 'Thất bại', {
             closeButton: true
           });
+
+          // update data
+          $scope.service.getCurrentUser();
         });
     }
   };
