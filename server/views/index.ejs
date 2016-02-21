@@ -71,7 +71,7 @@
               <a href="#"><span class="fa fa-user"></span></a>
               <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                 <!-- login -->
-                <div ng-if="!service.user.isLogin">
+                <div ng-show="!service.user.isLogin">
                   <div class="panel-heading">
                     <h3 class="panel-title"><span class="fa fa-comments"></span> Người dùng </h3>
                     <div class="pull-right">
@@ -81,20 +81,20 @@
                 </div>
                 <!-- end login -->
                 <!-- user profile -->
-                <div ng-if="service.user.isLogin">
+                <div ng-show="service.user.isLogin">
                   <div class="panel-heading">
                     <h3 class="panel-title"><span class="fa fa-user"></span> Thông tin tài khoản </h3>
                     <div class="pull-right">
-                      <span class="label label-danger" ng-if="!service.user.isPaid">Tài khoản thường</span>
+                      <span class="label label-danger" ng-show="!service.user.isPaid">Tài khoản thường</span>
                     </div>
                     <div class="pull-right">
-                      <span class="label label-success" ng-if="service.user.isPaid">Nâng cấp</span>
+                      <span class="label label-success" ng-show="service.user.isPaid">Nâng cấp</span>
                     </div>
                   </div>
                 </div>
                 <!-- end profile -->
                 <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                  <div ng-if="!service.user.isLogin">
+                  <div ng-show="!service.user.isLogin">
                     <div class="list-group-item">
                       <div class="form-group row">
                         <label class="col-md-offset-1 col-md-3 col-xs-12 control-label">Username</label>
@@ -125,7 +125,7 @@
                     </div>
                   </div>
                   <!-- profile -->
-                  <div ng-if="service.user.isLogin">
+                  <div ng-show="service.user.isLogin">
                     <a href="/edit/#/profile" class="list-group-item">
                       <div class="list-group-status status-online"></div>
                       <img ng-src="{{service.user.imgUrl}}" class="pull-left" alt="John Doe"/>
@@ -207,7 +207,7 @@
               
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h3>Loại tin</h3>
+                  <h3>Chủ đề</h3>
                   <div class="links">
                     <% for(var i=0; i<categories.length; i++) {%>
                     <a href="/#/index?pageNumber=1&categoryId=<%=categories[i]._id%>">
@@ -215,21 +215,6 @@
                       <span class="label label-default"><%=categories[i].count %></span>
                     </a>
                     <% } %>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <h3>Recent</h3>
-                  <div class="links small">
-                    <a href="/modules/admin/#">Vestibulum porttitor neque vitae odio vulputate molestie</a>
-                    <a href="/modules/admin/#">Etiam tellus mi, interdum id nulla in</a>
-                    <a href="/modules/admin/#">Cras eu tincidunt quam</a>
-                    <a href="/modules/admin/#">Donec rhoncus quam tortor, id pulvinar erat elementum eu</a>
-                    <a href="/modules/admin/#">Nunc lorem est, suscipit bibendum</a>
-                    <a href="/modules/admin/#">Fusce sollicitudin quis turpis eget mollis</a>
-                    <a href="/modules/admin/#">Cras eget sagittis dui, et mollis tortor</a>
                   </div>
                 </div>
               </div>

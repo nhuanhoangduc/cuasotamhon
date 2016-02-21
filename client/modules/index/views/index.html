@@ -14,8 +14,8 @@
 		</div>
 		<!-- start content -->
 		<div ng-show="!isLoading" ng-repeat="post in service.posts">
-			<div ng-class="{'row':$index%2==1}">
-				<div class="col-md-6">
+			<div ng-class="{'row':($index%3==0 || $index==0)}">
+				<div class="col-md-4">
 					
 					<div class="post-item">
 						<div class="post-title">

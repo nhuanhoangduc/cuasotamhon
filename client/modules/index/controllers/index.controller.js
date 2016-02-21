@@ -20,12 +20,12 @@ app.controller('indexCtrl', function($scope, indexService, $stateParams) {
     $scope.isLoading = true;
 
     $scope.service.count($scope.categoryId, function(result) {
-      for (var i = 1; i <= Math.ceil(result.count / 6); i++) {
+      for (var i = 1; i <= Math.ceil(result.count / 10); i++) {
         $scope.numberPage.push(i);
       }
     });
 
-    $scope.service.getByPage(6, $scope.categoryId, $scope.pageNumber, function done() {
+    $scope.service.getByPage(10, $scope.categoryId, $scope.pageNumber, function done() {
       $scope.isLoading = false;
     });
   };
